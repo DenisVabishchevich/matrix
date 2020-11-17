@@ -14,14 +14,4 @@ public class RandomMatrixProvider {
         }
         return result;
     }
-
-    public double[][] a(int size) {
-        double[][] result = new double[size][size];
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result[i].length; j++) {
-                result[i][j] = (byte) Math.round(Math.random());
-            }
-        }
-        return result;
-    }
 }

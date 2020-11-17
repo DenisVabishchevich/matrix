@@ -31,7 +31,7 @@ public class MatrixApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         if (args == null || args.length != 1 || args[0] == null || !StringUtils.isNumeric(args[0])) {
             System.out.println("Please provide first argument as matrix size");
@@ -43,20 +43,18 @@ public class MatrixApplication implements CommandLineRunner {
         System.out.println("--------------------------------------");
         System.out.println("start multiply in sequential");
         long start = System.currentTimeMillis();
-        int[][] b = sequentialMatrixOperations.multiply(randomMatrix, randomMatrix);
+        int[][] seqResult = sequentialMatrixOperations.multiply(randomMatrix, randomMatrix);
         long end = System.currentTimeMillis();
         System.out.println("Time spend im millis: " + (end - start));
 
         System.out.println("--------------------------------------");
         System.out.println("start multiply in parallel");
         start = System.currentTimeMillis();
-        int[][] a = parallelMatrixOperations.multiply(randomMatrix, randomMatrix);
+        int[][] parallelResult = parallelMatrixOperations.multiply(randomMatrix, randomMatrix);
         end = System.currentTimeMillis();
         System.out.println("Time spend im millis: " + (end - start));
 
         System.out.println("--------------------------------------");
-        System.out.println(Arrays.deepEquals(a, b));
-
-
+        System.out.println("arrays equals: " + Arrays.deepEquals(seqResult, parallelResult));
     }
 }
