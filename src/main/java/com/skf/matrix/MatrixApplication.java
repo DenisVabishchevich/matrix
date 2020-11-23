@@ -38,19 +38,19 @@ public class MatrixApplication implements CommandLineRunner {
             return;
         }
 
-        byte[][] randomMatrix = matrixProvider.createRandomSquareMatrix(Integer.parseInt(args[0]));
+        boolean[][] randomMatrix = matrixProvider.createRandomBoolSquareMatrix(Integer.parseInt(args[0]));
 
         System.out.println("--------------------------------------");
         System.out.println("start multiply in sequential");
         long start = System.currentTimeMillis();
-        int[][] seqResult = sequentialMatrixOperations.multiply(randomMatrix, randomMatrix);
+        boolean[][] seqResult = sequentialMatrixOperations.multiply(randomMatrix, randomMatrix);
         long end = System.currentTimeMillis();
         System.out.println("Time spend im millis: " + (end - start));
 
         System.out.println("--------------------------------------");
         System.out.println("start multiply in parallel");
         start = System.currentTimeMillis();
-        int[][] parallelResult = parallelMatrixOperations.multiply(randomMatrix, randomMatrix);
+        boolean[][] parallelResult = parallelMatrixOperations.multiply(randomMatrix, randomMatrix);
         end = System.currentTimeMillis();
         System.out.println("Time spend im millis: " + (end - start));
 
